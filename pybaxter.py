@@ -29,13 +29,16 @@ class Baxter(object):
 	self._name = name
 	init_node(self._name)
 	RobotEnable().enable()
- 
+	self._limbs = {
+	    'left': Limb('left'),
+            'right': Limb('right')
+        }
+		 
     def set_angles_to_zero(self, side):
-	limb = Limb(side)
         angles = {joint: 0.0 for joint in self._arm_joints[side]}
-	limb.move_to_joint_positions(angles)
+	self._limbs[side].move_to_joint_positions(angles)
 
 node = Baxter()
-node.set_angles_to_zero('left')
+node.set_angles_to_zero('right')
 
 exit	
