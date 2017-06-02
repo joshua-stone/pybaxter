@@ -4,14 +4,16 @@ from baxter_interface import Limb, RobotEnable
 from rospy import init_node
 from sys import exit
 
+LEFT, RIGHT = 'left', 'right'
+
 class Baxter(object):
     def __init__(self, name='Baxter_Node'):
 	self._name = name
 	init_node(self._name)
 	RobotEnable().enable()
 	self._limbs = {
-	    'left': Limb('left'),
-            'right': Limb('right')
+	    LEFT: Limb(LEFT),
+            RIGHT: Limb(RIGHT)
         }
 
     def reset_limb(self, side):
@@ -24,7 +26,7 @@ class Baxter(object):
 
 if __name__ == '__main__':
     node = Baxter()
-    node.reset_limb('left')
-    node.reset_limb('right')
+    node.reset_limb(LEFT)
+    node.reset_limb(RIGHT)
     print(node.joints())
     exit()
