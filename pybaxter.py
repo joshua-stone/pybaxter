@@ -19,10 +19,7 @@ class Baxter(object):
 	self._limbs[side].move_to_joint_positions(angles)
 
     def joints(self):
-        joints = {
-            'left': self._limbs['left'].joint_angles(),
-            'right': self._limbs['right'].joint_angles()
-        }
+        joints = {limb: joint.joint_angles() for limb, joint in self._limbs.iteritems()}
         return joints
 
 if __name__ == '__main__':
