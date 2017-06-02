@@ -5,6 +5,26 @@ from rospy import init_node
 from sys import exit
 
 class Baxter(object):
+    _arm_joints = {
+        'left': [
+            'left_s0',
+            'left_s1',
+            'left_e0',
+            'left_e1',
+            'left_w0',
+            'left_w1',
+            'left_w2'
+        ],
+        'right': [
+            'right_s0',
+            'right_s1',
+            'right_e0',
+            'right_e1',
+            'right_w0',
+            'right_w1',
+            'right_w2'
+        ]
+    }
     def __init__(self, name='Baxter_Node'):
 	self._name = name
 	init_node(self._name)
@@ -12,7 +32,7 @@ class Baxter(object):
  
     def set_angles_to_zero(self, side):
 	limb = Limb(side)
-        angles = {'{}_{}'.format(side, location): 0.0 for location in ('s0', 's1', 'e0', 'e1', 'w0', 'w1', 'w2')}
+        angles = {joint: 0.0 for joint in self._arm_joints[side]}
 	limb.move_to_joint_positions(angles)
 
 node = Baxter()
