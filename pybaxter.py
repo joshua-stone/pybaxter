@@ -38,7 +38,8 @@ class Baxter(object):
         angles = {joint: 0.0 for joint in self._arm_joints[side]}
 	self._limbs[side].move_to_joint_positions(angles)
 
-node = Baxter()
-node.set_angles_to_zero('right')
+if __name__ == '__main__':
+    node = Baxter()
+    node.set_angles_to_zero('right')
 
-exit	
+    exit()
