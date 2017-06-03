@@ -2,7 +2,12 @@
 
 from baxter_interface import Limb, RobotEnable
 from rospy import init_node
-from sys import exit
+
+__all__ = [
+    'Baxter',
+    'LEFT',
+    'RIGHT'
+]
 
 LEFT, RIGHT = 'left', 'right'
 
@@ -24,9 +29,3 @@ class Baxter(object):
         joints = {limb: joint.joint_angles() for limb, joint in self._limbs.iteritems()}
         return joints
 
-if __name__ == '__main__':
-    node = Baxter()
-    node.reset_limb(LEFT)
-    node.reset_limb(RIGHT)
-    print(node.joints())
-    exit()
