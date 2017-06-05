@@ -79,7 +79,7 @@ class Baxter(object):
         return self._limbs[RIGHT].joint_angles()['right_w0']
     @property
     def right_w1(self):
-        return self._limbs[RIGHT].joint_angles()['right_w0']
+        return self._limbs[RIGHT].joint_angles()['right_w1']
     @property
     def right_w2(self):
-        return self._limbs[RIGHT].joint_angles()['right_w0']
+        return self._limbs[RIGHT].joint_angles()['right_w2']
