@@ -25,12 +25,19 @@ class Baxter(object):
 
     def reset_limb(self, side):
         angles = {joint: 0.0 for joint in self._limbs[side].joint_angles()}
+
+        self.enable_check()
+
         self._limbs[side].move_to_joint_positions(angles)
 
+    def enable_check(self):
+        # Sometimes robot is disabled due to another program resetting state
+        if not self.enabled:
+            self._baxter_state.enable()
+    @property
     def joints(self):
         joints = {limb: joint.joint_angles() for limb, joint in self._limbs.iteritems()}
         return joints
-
     @property
     def enabled(self):
         return self._baxter_state.state().enabled
